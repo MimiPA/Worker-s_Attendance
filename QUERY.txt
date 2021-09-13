@@ -1,0 +1,34 @@
+CREATE TABLE registers (
+    id_register INT(3) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    email VARCHAR(50) NOT NULL,
+    password VARCHAR(100) NOT NULL,
+    createdAt TIMESTAMP NOT NULL,
+    token VARCHAR(50) NOT NULL,
+    account ENUM('Active', 'Deactive') NOT NULL DEFAULT 'Deactive',
+    id_level INT(3) NOT NULL DEFAULT 1,
+
+    CONSTRAINT register_levels_id_level_fk
+    FOREIGN KEY(id_level)
+    REFERENCES register_levels(id_level)
+);
+
+CREATE TABLE register_levels (
+    id_level INT(3) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    level VARCHAR(10) NOT NULL
+);
+
+INSERT INTO register_levels(level) VALUES
+('User'),
+('Admin');
+
+CREATE TABLE attendances (
+    id_register INT(3) NOT NULL,
+    entryAt TIMESTAMP NOT NULL,
+    exitAt DATETIME NOT NULL,
+    isNear ENUM('yes', 'no') NOT NULL,
+    approver ENUM('yes', 'no') NOT NULL DEFAULT 'no',
+
+    CONSTRAINT register_id_register_fk
+    FOREIGN KEY(id_register)
+    REFERENCES registers(id_register)
+);
