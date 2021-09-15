@@ -1,5 +1,7 @@
 CREATE TABLE registers (
     id_register INT(3) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    first_name VARCHAR(50) NOT NULL,
+    last_name VARCHAR(50) NOT NULL,
     email VARCHAR(50) NOT NULL,
     password VARCHAR(100) NOT NULL,
     createdAt TIMESTAMP NOT NULL,
@@ -22,10 +24,13 @@ INSERT INTO register_levels(level) VALUES
 ('Admin');
 
 CREATE TABLE attendances (
+    id_attendance INT(3) NOT NULL AUTO_INCREMENT PRIMARY KEY,
     id_register INT(3) NOT NULL,
     entryAt TIMESTAMP NOT NULL,
     exitAt DATETIME NOT NULL,
-    isNear ENUM('yes', 'no') NOT NULL,
+    checkIn ENUM('yes', 'no') NOT NULL,
+    latitude VARCHAR(50) NOT NULL,
+    longitude VARCHAR(50) NOT NULL,
     approver ENUM('yes', 'no') NOT NULL DEFAULT 'no',
 
     CONSTRAINT register_id_register_fk

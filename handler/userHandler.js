@@ -7,14 +7,13 @@ process.env.TOKEN_KEY = "glints";
 
 const addUserHandler = async (req, res) => {
     try {
-        const { email, password, repassword } = req.body;
+        const { first_name, last_name, email, password, repassword } = req.body;
         const today = moment().format('YYYY-MM-DD HH:mm:ss');
 
-        if (!(email && password && repassword)) {
+        if (!(first_name && last_name && email && password && repassword)) {
             res.status(400).send("All input is required");
         }
-
-        if (password != repassword) {
+        else if (password != repassword) {
             res.status(400).send("Please match both password");
         }
         else {
@@ -31,6 +30,8 @@ const addUserHandler = async (req, res) => {
             encryptedPassword = await bcrypt.hash(password, 10);
 
             const user = await userModel.create({
+                first_name: first_name,
+                last_name: last_name,
                 email: email,
                 password: encryptedPassword,
                 createdAt: today,
@@ -56,8 +57,48 @@ const addUserHandler = async (req, res) => {
         console.log(err);
         res.json({ message: err });
     }
-}
+};
+
+const loginHandler = async (req, res) => {
+    try {
+        const { email, password } = req.body;
+
+        if (!(email && password)) {
+            res.status(400).send("All input is required");
+        }
+
+        const user = await userModel.findOne({
+            where: {
+                email: email
+            }
+        });
+
+        if (user && (await bcrypt.compare(password, user.password))) {
+            const token = jwt.sign(
+                { id_register: user._id_register, email },
+                process.env.TOKEN_KEY,
+                {
+                    expiresIn: "1h",
+                }
+            );
+
+            const upUser = await userModel.update(
+                { token: token },
+                { where: { email: user.email } }
+            );
+
+            res.status(201).send({ status: 'success', message: token });
+        }
+        else {
+            res.status(400).send("Invalid Credentials");
+        }
+    }
+    catch (err) {
+        console.log(err);
+    }
+};
 
 module.exports = {
-    addUserHandler
+    addUserHandler,
+    loginHandler
 };
