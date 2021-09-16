@@ -66,31 +66,32 @@ const loginHandler = async (req, res) => {
         if (!(email && password)) {
             res.status(400).send("All input is required");
         }
-
-        const user = await userModel.findOne({
-            where: {
-                email: email
-            }
-        });
-
-        if (user && (await bcrypt.compare(password, user.password))) {
-            const token = jwt.sign(
-                { id_register: user._id_register, email },
-                process.env.TOKEN_KEY,
-                {
-                    expiresIn: "1h",
-                }
-            );
-
-            const upUser = await userModel.update(
-                { token: token },
-                { where: { email: user.email } }
-            );
-
-            res.status(201).send({ status: 'success', message: token });
-        }
         else {
-            res.status(400).send("Invalid Credentials");
+            const user = await userModel.findOne({
+                where: {
+                    email: email
+                }
+            });
+
+            if (user && (await bcrypt.compare(password, user.password))) {
+                const token = jwt.sign(
+                    { id_register: user._id_register, email },
+                    process.env.TOKEN_KEY,
+                    {
+                        expiresIn: "1h",
+                    }
+                );
+
+                const upUser = await userModel.update(
+                    { token: token },
+                    { where: { email: user.email } }
+                );
+
+                res.status(201).send({ status: 'success', message: token });
+            }
+            else {
+                res.status(400).send("Invalid Credentials");
+            }
         }
     }
     catch (err) {
