@@ -1,4 +1,9 @@
-const { addUserHandler, loginHandler } = require('../handler/userHandler');
+const {
+    addUserHandler,
+    loginHandler
+} = require('../handler/userHandler');
+
+const { logoutHandler } = require('../handler/logoutHandler');
 
 const auth = require('../handler/auth');
 
@@ -10,8 +15,11 @@ router.use(cors());
 router.post('/register', addUserHandler);
 router.post('/login', loginHandler);
 
-router.get('/welcome', auth, (req, res) => {
+router.post('/welcome', auth, (req, res) => {
     res.status(200).send("Welcome to Home Page");
 });
+
+router.put('/logout', auth, logoutHandler);
+
 
 module.exports = router;
