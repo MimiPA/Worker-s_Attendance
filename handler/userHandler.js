@@ -96,6 +96,7 @@ const loginHandler = async (req, res) => {
     }
     catch (err) {
         console.log(err);
+        res.json({ message: err });
     }
 };
 

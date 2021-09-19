@@ -5,6 +5,10 @@ const {
 
 const { logoutHandler } = require('../handler/logoutHandler');
 
+const { forgotHandler } = require('../handler/forgotHandler');
+
+const {resetPassHandler} = require('../handler/resetHandler');
+
 const auth = require('../handler/auth');
 
 const express = require('express');
@@ -19,7 +23,12 @@ router.post('/welcome', auth, (req, res) => {
     res.status(200).send("Welcome to Home Page");
 });
 
-router.put('/logout', auth, logoutHandler);
+router.post('/forgot', forgotHandler);
+router.get('/reset/:id_register', resetPassHandler);
+router.post('/reset/:id_register', resetPassHandler);
+
+router.put('/logout', logoutHandler);
+
 
 
 module.exports = router;
