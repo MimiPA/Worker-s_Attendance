@@ -1,10 +1,9 @@
 CREATE TABLE registers (
     id_register INT(3) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    first_name VARCHAR(50) NOT NULL,
-    last_name VARCHAR(50) NOT NULL,
+    full_name VARCHAR(255) NOT NULL,
     email VARCHAR(50) NOT NULL,
     password VARCHAR(100) NOT NULL,
-    createdAt TIMESTAMP NOT NULL,
+    createdAt DATETIME NOT NULL,
     token VARCHAR(50) NOT NULL,
     account ENUM('Active', 'Deactive') NOT NULL DEFAULT 'Deactive',
     id_level INT(3) NOT NULL DEFAULT 1,
@@ -26,12 +25,11 @@ INSERT INTO register_levels(level) VALUES
 CREATE TABLE attendances (
     id_attendance INT(3) NOT NULL AUTO_INCREMENT PRIMARY KEY,
     id_register INT(3) NOT NULL,
-    entryAt TIMESTAMP NOT NULL,
+    entryAt DATETIME NOT NULL,
     exitAt DATETIME NOT NULL,
     checkIn ENUM('yes', 'no') NOT NULL,
     latitude VARCHAR(50) NOT NULL,
     longitude VARCHAR(50) NOT NULL,
-    approver ENUM('yes', 'no') NOT NULL DEFAULT 'no',
 
     CONSTRAINT register_id_register_fk
     FOREIGN KEY(id_register)

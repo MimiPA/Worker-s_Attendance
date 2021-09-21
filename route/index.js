@@ -1,13 +1,8 @@
-const {
-    addUserHandler,
-    loginHandler
-} = require('../handler/userHandler');
-
+const { registerHandler } = require('../handler/registerHandler');
+const { loginHandler } = require('../handler/loginHandler');
 const { logoutHandler } = require('../handler/logoutHandler');
-
 const { forgotHandler } = require('../handler/forgotHandler');
-
-const {resetPassHandler} = require('../handler/resetHandler');
+const { resetPassHandler } = require('../handler/resetHandler');
 
 const auth = require('../handler/auth');
 
@@ -16,10 +11,10 @@ const router = express.Router();
 const cors = require('cors');
 router.use(cors());
 
-router.post('/register', addUserHandler);
+router.post('/register', registerHandler);
 router.post('/login', loginHandler);
 
-router.post('/welcome', auth, (req, res) => {
+router.post('/home', auth, (req, res) => {
     res.status(200).send("Welcome to Home Page");
 });
 

@@ -12,16 +12,16 @@ const logoutHandler = async (req, res) => {
             res.status(401).send("No Token Logout");
         }
         else {
-            let tokenBaru = jwt.sign("expired", "glints",
+            let tokenBaru = jwt.sign(token, "glints",
                 {
-                    expiresIn: "1h",
+                    expiresIn: 1,
                 }
             );
             const upUser = userModel.update(
                 { token: tokenBaru },
                 { where: { token: token } }
             );
-            res.send({ status: 'success', message: 'You have been Logged Out' + decoded });
+            res.send({ status: 'success', message: 'You have been Logged Out'});
         }
     }
     catch (err) {
