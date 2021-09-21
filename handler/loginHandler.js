@@ -47,6 +47,5 @@ const loginHandler = async (req, res) => {
 };
 
 module.exports = {
-    addUserHandler,
     loginHandler
 };

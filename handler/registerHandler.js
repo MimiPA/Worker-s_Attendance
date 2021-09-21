@@ -50,7 +50,7 @@ const registerHandler = async (req, res) => {
                 { where: { email: user.email } }
             );
 
-            res.status(201).json(token);
+            res.status(201).send({ status: 'success', message: token });
         }
     }
     catch (err) {

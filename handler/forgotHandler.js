@@ -32,7 +32,7 @@ const forgotHandler = async (req, res) => {
                 res.status(400).json({ error: 'Reset link cannot be sent' });
             }
             else {
-                res.send("Password reset link sent to your email account");
+                res.status(201).send({ status: 'success', message: "Link password reset sent to your email account" })
             }
         }
     }

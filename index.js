@@ -13,10 +13,10 @@ app.use(express.urlencoded({ extended: true }));
 // simple route
 const router = require('./route');
 
-app.use('/users', router);
+app.use('/', router);
 
 // set port, listen for requests
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}.`);
 });

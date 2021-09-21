@@ -9,13 +9,16 @@ process.env.TOKEN_KEY = "glints";
 const resetPassHandler = async (req, res) => {
     try {
         const { id_register } = req.params;
-        const { password } = req.body;
+        const { password, repassword } = req.body;
 
         if (!id_register) {
             res.status(400).send('ID Register is missing');
         }
-        else if(!password){
-            res.status(400).send('Password is missing');
+        else if(!(password && repassword)){
+            res.status(400).send('All input required');
+        }
+        else if(password != repassword){
+            res.status(400).send("Please match both password");
         }
         else {
             const pengguna = userModel.findOne({
@@ -33,7 +36,7 @@ const resetPassHandler = async (req, res) => {
                 { where: { id_register: id_register } }
             );
 
-            res.status(201).send('Reset Password Sucessfully');
+            res.status(201).send({ status: 'success', message: "Reset Password Successfully" });
         }
     }
     catch (err) {
