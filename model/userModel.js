@@ -22,6 +22,10 @@ module.exports = db.sequelize.define(
             type: Sequelize.DATE,
             defaultValue: Sequelize.NOW
         },
+        account: {
+            type: Sequelize.ENUM('Active', 'Deactive'),
+            defaultValue: 'Deactive'
+        },
         token: {
             type: Sequelize.STRING
         }

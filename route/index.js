@@ -11,6 +11,10 @@ const router = express.Router();
 const cors = require('cors');
 router.use(cors());
 
+router.get('/', (req, res) => {
+    res.status(200).send("Glints Worker's Attendance");
+});
+
 router.post('/register', registerHandler);
 router.post('/login', loginHandler);
 
