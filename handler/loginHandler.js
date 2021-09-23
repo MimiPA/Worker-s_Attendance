@@ -10,7 +10,7 @@ const loginHandler = async (req, res) => {
         const { email, password } = req.body;
 
         if (!(email && password)) {
-            res.status(400).send("All input is required");
+            res.status(400).send({ status: "failed", message: "All input is required" });
         }
         else {
             const user = await userModel.findOne({
