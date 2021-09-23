@@ -10,7 +10,7 @@ const forgotHandler = async (req, res) => {
     try {
         const { email } = req.body;
         if (email == undefined) {
-            res.status(400).send('Email address is missing');
+            res.status(400).send({ status: 'failed', message: 'Email address is missing' });
         }
         else {
             const pengguna = await userModel.findOne({
@@ -32,7 +32,7 @@ const forgotHandler = async (req, res) => {
                 res.status(400).json({ error: 'Reset link cannot be sent' });
             }
             else {
-                res.status(201).send({ status: 'success', message: "Link password reset sent to your email account" })
+                res.status(201).send({ status: 'success', message: "Link password reset sent to your email account" });
             }
         }
     }
