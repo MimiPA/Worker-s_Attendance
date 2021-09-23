@@ -12,13 +12,13 @@ const resetPassHandler = async (req, res) => {
         const { password, repassword } = req.body;
 
         if (!id_register) {
-            res.status(400).send('ID Register is missing');
+            res.status(400).send({ status: 'failed', message: 'ID Register is missing' });
         }
         else if(!(password && repassword)){
-            res.status(400).send('All input required');
+            res.status(400).send({ status: 'failed', message: 'All input required' });
         }
         else if(password != repassword){
-            res.status(400).send("Please match both password");
+            res.status(400).send({ status: 'failed', message: "Please match both password" });
         }
         else {
             const pengguna = userModel.findOne({
@@ -27,7 +27,7 @@ const resetPassHandler = async (req, res) => {
                 }
             });
 
-            if (!pengguna) return res.status(400).send("No user with ID");
+            if (!pengguna) return res.status(400).send({ status: 'failed', message: "No user with ID" });
 
             encryptedPassword = await bcrypt.hash(password, 10);
 

@@ -11,10 +11,10 @@ const registerHandler = async (req, res) => {
         const today = moment().format('YYYY-MM-DD HH:mm:ss');
 
         if (!(full_name && email && password && repassword)) {
-            res.status(400).send("All input is required");
+            res.status(400).send({ status: "failed", message: "All input is required" });
         }
         else if (password != repassword) {
-            res.status(400).send("Please match both password");
+            res.status(400).send({ status: "failed", message: "Please match both password" });
         }
         else {
             const oldUser = await userModel.findOne({
@@ -24,7 +24,7 @@ const registerHandler = async (req, res) => {
             });
 
             if (oldUser) {
-                return res.status(409).send("User Already Exist. Please Login");
+                return res.status(409).send({ status: 'failed', message: 'User Already Exist. Please Login' });
             }
 
             encryptedPassword = await bcrypt.hash(password, 10);
@@ -38,7 +38,7 @@ const registerHandler = async (req, res) => {
             });
 
             const token = jwt.sign(
-                { id_register: user._id_register, email },
+                { id_register: user.id_register, email },
                 process.env.TOKEN_KEY,
                 {
                     expiresIn: "1h",
