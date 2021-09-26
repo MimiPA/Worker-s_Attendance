@@ -33,10 +33,14 @@ const loginHandler = async (req, res) => {
                     { where: { email: user.email } }
                 );
 
-                res.status(201).send({ status: 'success', message: token });
+                res.status(201).send({
+                    status: 'success',
+                    token: token,
+                    message: 'Login Success'
+                });
             }
             else {
-                res.status(400).send("Invalid Credentials");
+                res.status(400).send({status: 'failed', message: 'Invalid Credentials'});
             }
         }
     }

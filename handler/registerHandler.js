@@ -30,8 +30,7 @@ const registerHandler = async (req, res) => {
             encryptedPassword = await bcrypt.hash(password, 10);
 
             const user = await userModel.create({
-                first_name: first_name,
-                last_name: last_name,
+                full_name: full_name,
                 email: email,
                 password: encryptedPassword,
                 createdAt: today,
@@ -50,7 +49,11 @@ const registerHandler = async (req, res) => {
                 { where: { email: user.email } }
             );
 
-            res.status(201).send({ status: 'success', message: token });
+            res.status(201).send({
+                status: 'success',
+                token: token,
+                message: 'Register Account Successful'
+            });
         }
     }
     catch (err) {

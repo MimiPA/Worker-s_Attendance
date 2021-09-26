@@ -18,7 +18,7 @@ const forgotHandler = async (req, res) => {
                     email: email
                 }
             });
-            if (!pengguna) return res.status(400).send("Email user doesn't exist");
+            if (!pengguna) return res.status(400).send({ status: 'failed', message: 'Email user doesn\'t exist' });
 
             const subject = "Reset Account Password"
             const text = `Please klik this link to reset your password
@@ -29,7 +29,7 @@ const forgotHandler = async (req, res) => {
             await sendEmail(pengguna.email, subject, text);
 
             if (!sendEmail) {
-                res.status(400).json({ error: 'Reset link cannot be sent' });
+                res.status(400).send({ status: 'failed', message: 'Reset link cannot be sent' });
             }
             else {
                 res.status(201).send({ status: 'success', message: "Link password reset sent to your email account" });

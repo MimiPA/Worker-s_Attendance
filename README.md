@@ -1,15 +1,16 @@
 ## Package
 
 The package used by this file are :
-- bcrypt        : "^5.0.1"
-- cors          : "^2.8.5"
-- express       : "^4.17.1"
-- jsonwebtoken  : "^8.5.1"
-- moment        : "^2.29.1"
-- mysql2        : "^2.3.0"
-- nodemailer    : "^6.6.3"
-- nodemon       : "^2.0.12"
-- sequelize     : "^6.6.5"
+- "bcrypt": "^5.0.1"
+- "cors": "^2.8.5"
+- "express": "^4.17.1"
+- "jsonwebtoken": "^8.5.1"
+- "moment": "^2.29.1"
+- "nodemailer": "^6.6.3"
+- "nodemon": "^2.0.12"
+- "pg": "^8.7.1"
+- "pg-hstore": "^2.3.4"
+- "sequelize": "^6.6.5"
   
   
 ## Endpoint
@@ -52,3 +53,9 @@ Perlu masukkan <b>password, repassword</b>
 -Kalau password != repassword, maka muncul pesan ("Please match both password").....  
 -Kalau tidak ada id_register di database, maka muncul pesan ("No user with ID").....  
 -Kalau berhasil reset password, maka muncul pesan ('Reset Password Sucessfully').....  
+
+- <b>Logout</b>  
+PUT - http://localhost:5000/logout  
+-Jika tidak ada token pada header, maka akan memunculkan pesan ("No Token Logout").....  
+-Kalau berhasil logout, maka akan muncul pesan ('You have been Logged Out').....  
+-Kalau sudah logout, user tidak bisa akses HOME lagi, perlu login ulang.....

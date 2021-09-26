@@ -18,16 +18,17 @@ module.exports = db.sequelize.define(
         password: {
             type: Sequelize.STRING
         },
-        createdAt: {
+        createdat: {
             type: Sequelize.DATE,
             defaultValue: Sequelize.NOW
         },
         account: {
-            type: Sequelize.ENUM('Active', 'Deactive'),
+            type: Sequelize.STRING,
             defaultValue: 'Deactive'
         },
         token: {
-            type: Sequelize.STRING
+            type: Sequelize.STRING,
+            defaultValue: 0
         }
     },
     {

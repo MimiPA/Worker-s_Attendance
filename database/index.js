@@ -1,8 +1,8 @@
 const Sequelize = require('sequelize');
 const db = {};
-const sequelize = new Sequelize('glints_worker', 'root', '', {
+const sequelize = new Sequelize('glints_worker', 'postgres', 'mimi', {
     host: 'localhost',
-    dialect: 'mysql',
+    dialect: 'postgres',
     operatorsAliases: false,
 
     pool: {

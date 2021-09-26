@@ -16,13 +16,18 @@ router.get('/', (req, res) => {
 });
 
 router.get('/login', (req, res) => {
-    res.status(200).send({ status: 'success', message: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF9yZWdpc3RlciI6MiwiZW1haWwiOiJwYXJhbWl0YWFkaXR1bmdAZ21haWwuY29tIiwiaWF0IjoxNjMyNDAxOTkzLCJleHAiOjE2MzI0MDU1OTN9.0CSMu2GElkyIILuuThRNQGFgGsL4vLL10OJFiBpmcaY' });
+    res.status(200).send({
+        status: 'success',
+        token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF9yZWdpc3RlciI6MiwiZW1haWwiOiJwYXJhbWl0YWFkaXR1bmdAZ21haWwuY29tIiwiaWF0IjoxNjMyNDAxOTkzLCJleHAiOjE2MzI0MDU1OTN9.0CSMu2GElkyIILuuThRNQGFgGsL4vLL10OJFiBpmcaY',
+        message: 'Login Success'
+    });
 });
 
 router.get('/register', (req, res) => {
     res.status(201).json({
         status: 'success',
-        message: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBhcmFtaXRhYWRpdHVuZ0BnbWFpbC5jb20iLCJpYXQiOjE2MzIxNDc2MTgsImV4cCI6MTYzMjE1MTIxOH0.ZB2cVWxHP3TJvE5xn_9nZ-WEzT_HTmJUX4W0PZu81os',
+        token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBhcmFtaXRhYWRpdHVuZ0BnbWFpbC5jb20iLCJpYXQiOjE2MzIxNDc2MTgsImV4cCI6MTYzMjE1MTIxOH0.ZB2cVWxHP3TJvE5xn_9nZ-WEzT_HTmJUX4W0PZu81os',
+        message: 'Register Account Successful',
         data: {
             id_register: 1,
             full_name: "Natasya Susanto",
