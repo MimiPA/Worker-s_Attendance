@@ -13,15 +13,15 @@ module.exports = db.sequelize.define(
             type: Sequelize.INTEGER,
             foreignKey: true
         },
-        entryAt: {
+        entryat: {
             type: Sequelize.DATE,
             defaultValue: Sequelize.NOW
         },
-        exitAt: {
+        exitat: {
             type: Sequelize.DATE
         },
-        checkIn: {
-            type: Sequelize.ENUM('Yes', 'No'),
+        checkin: {
+            type: Sequelize.STRING,
             defaultValue: 'No'
         },
         latitude: {

@@ -35,3 +35,89 @@ CREATE TABLE attendances (
     FOREIGN KEY(id_register)
     REFERENCES registers(id_register)
 );
+
+
+CREATE TABLE registers (
+    id_register INT NOT NULL GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    full_name VARCHAR(255) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    password VARCHAR(100) NOT NULL,
+    createdAt TIMESTAMP NOT NULL,
+    token VARCHAR(255) NOT NULL,
+    account VARCHAR(20) NOT NULL DEFAULT 'Deactive',
+    id_level INT NOT NULL DEFAULT 1,
+
+    CONSTRAINT register_levels_id_level_fk
+    FOREIGN KEY(id_level)
+    REFERENCES register_levels(id_level)
+);
+
+
+
+
+
+
+
+CREATE TABLE register_levels (
+    id_level SERIAL NOT NULL PRIMARY KEY,
+    level VARCHAR(10) NOT NULL
+);
+
+CREATE TABLE registers (
+    id_register SERIAL NOT NULL PRIMARY KEY,
+    full_name VARCHAR(255) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    password VARCHAR(100) NOT NULL,
+    createdAt TIMESTAMP NOT NULL,
+    token VARCHAR(255) NOT NULL,
+    account VARCHAR(20) NOT NULL DEFAULT 'Deactive',
+    id_level INT NOT NULL DEFAULT 1,
+
+    CONSTRAINT register_levels_id_level_fk
+    FOREIGN KEY(id_level)
+    REFERENCES register_levels(id_level)
+);
+
+INSERT INTO public.registers(
+	full_name, email, password, createdat, token, account, id_level)
+	VALUES ('Admin', 'ctf18email@gmail.com', '$2b$10$5jwA5bPSYBaYrcKoTwJoaeRQlFBm5kGFWOBvfpkRaRaMqjx6PAW6K', '2021-09-19 13:16:40', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF9yZWdpc3RlciI6NCwiZW1haWwiOiJjdGYxOGVtYWlsQGdtYWlsLmNvbSIsImlhdCI6MTYzMjY1ODAwMSwiZXhwIjoxNjMyNjYxNjAxfQ.uzxJxKzAiNTlwmSG1sTH-WQVp9iABuy9gz3Dd6ld4wE', 'Active', 2);
+
+CREATE TABLE attendances (
+    id_attendance SERIAL NOT NULL PRIMARY KEY,
+    id_register INT NOT NULL,
+    entryAt TIMESTAMP NOT NULL,
+    exitAt TIMESTAMP NOT NULL,
+    checkIn VARCHAR(10) NOT NULL DEFAULT 'No',
+    latitude VARCHAR(50) NOT NULL,
+    longitude VARCHAR(50) NOT NULL,
+    distance VARCHAR(10) NOT NULL,
+
+    CONSTRAINT register_id_register_fk
+    FOREIGN KEY(id_register)
+    REFERENCES registers(id_register)
+);
+
+
+
+
+
+
+const Sequelize = require('sequelize');
+const db = {};
+const sequelize = new Sequelize('glints_worker', 'postgres', 'mimi', {
+    host: 'localhost',
+    dialect: 'postgres',
+    operatorsAliases: false,
+
+    pool: {
+        max: 5,
+        min: 0,
+        acquire: 30000,
+        idle: 10000
+    }
+});
+
+db.sequelize = sequelize;
+db.Sequelize = Sequelize;
+
+module.exports = db;
