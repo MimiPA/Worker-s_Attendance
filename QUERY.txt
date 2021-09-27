@@ -99,7 +99,9 @@ CREATE TABLE attendances (
     REFERENCES registers(id_register)
 );
 
+psql -h ec2-52-206-193-199.compute-1.amazonaws.com -U uemfoqlmslqxla denndsuq8po91s
 
+feaa718624322e4d96fbf7f2b4575e814ead63f7a8860c58385a2dd278536f03
 
 
 
