@@ -18,11 +18,4 @@ const sequelize = new Sequelize('postgres://uemfoqlmslqxla:feaa718624322e4d96fbf
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
-try {
-    await sequelize.authenticate();
-    console.log('Connection has been established successfully.');
-} catch (error) {
-    console.error('Unable to connect to the database:', error);
-}
-
 module.exports = db;
