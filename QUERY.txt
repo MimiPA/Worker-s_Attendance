@@ -63,6 +63,8 @@ CREATE TABLE register_levels (
     level VARCHAR(10) NOT NULL
 );
 
+INSERT INTO public.register_levels(level) VALUES ('User'), ('Admin');
+
 CREATE TABLE registers (
     id_register SERIAL NOT NULL PRIMARY KEY,
     full_name VARCHAR(255) NOT NULL,
