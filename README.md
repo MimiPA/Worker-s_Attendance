@@ -1,3 +1,7 @@
+## Admin Account
+<b>Email :</b> ctf18email@gmail.com  
+<b>Password : </b> testing18
+
 ## Package
 
 The package used by this file are :
