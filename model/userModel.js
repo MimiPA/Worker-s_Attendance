@@ -22,13 +22,16 @@ module.exports = db.sequelize.define(
             type: Sequelize.DATE,
             defaultValue: Sequelize.NOW
         },
+        token: {
+            type: Sequelize.STRING,
+            defaultValue: 0
+        },
         account: {
             type: Sequelize.STRING,
             defaultValue: 'Deactive'
         },
-        token: {
-            type: Sequelize.STRING,
-            defaultValue: 0
+        id_level: {
+            type: Sequelize.INTEGER
         }
     },
     {

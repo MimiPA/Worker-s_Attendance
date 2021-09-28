@@ -29,6 +29,9 @@ module.exports = db.sequelize.define(
         },
         longitude: {
             type: Sequelize.STRING
+        },
+        distance: {
+            type: Sequelize.STRING
         }
     },
     {

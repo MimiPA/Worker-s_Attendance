@@ -1,7 +1,4 @@
 const userModel = require('../model/userModel');
-const bcrypt = require('bcrypt');
-const moment = require('moment');
-const jwt = require('jsonwebtoken');
 const sendEmail = require('./sendEmail');
 
 process.env.TOKEN_KEY = "glints";
@@ -22,7 +19,7 @@ const forgotHandler = async (req, res) => {
 
             const subject = "Reset Account Password"
             const text = `Please klik this link to reset your password
-                        http://localhost:5000/users/reset/${pengguna.id_register}
+                        https://quiet-everglades-86369.herokuapp.com/reset/${pengguna.id_register}
         
                         Thank You`;
 

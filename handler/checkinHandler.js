@@ -1,4 +1,5 @@
 const attendanceModel = require('../model/attendanceModel');
+const userModel = require('../model/userModel');
 const bcrypt = require('bcrypt');
 const moment = require('moment');
 const jwt = require('jsonwebtoken');
@@ -20,13 +21,25 @@ const checkinHandler = async (req, res) => {
         else {
             const decoded = jwt.verify(token, process.env.TOKEN_KEY);
 
-            const user = await userModel.create({
-                first_name: first_name,
-                last_name: last_name,
-                email: email,
-                password: encryptedPassword,
-                createdAt: today,
+            const dataUser = await userModel.findOne({
+                where: {
+                    id_register: decoded.id_register
+                }
             });
+
+            if (!dataUser) {
+                return res.status(404).send({ status: 'failed', message: 'User account doesn\'t exist' });
+            }
+            else {
+                const user = await attendanceModel.create({
+                    id_register: dataUser.id_register,
+                    entryat: today,
+                    checkin: 'Yes',
+                    latitude: latitude,
+                    longitude: longitude,
+                    distance: distance
+                });
+            }
         }
     }
     catch (err) {

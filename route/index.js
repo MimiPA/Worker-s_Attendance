@@ -3,6 +3,7 @@ const { loginHandler } = require('../handler/loginHandler');
 const { logoutHandler } = require('../handler/logoutHandler');
 const { forgotHandler } = require('../handler/forgotHandler');
 const { resetPassHandler } = require('../handler/resetHandler');
+const { adminAccHandler } = require('../handler/adminAccHandler');
 
 const auth = require('../handler/auth');
 
@@ -47,6 +48,8 @@ router.post('/home', auth, (req, res) => {
 router.post('/forgot', forgotHandler);
 router.get('/reset/:id_register', resetPassHandler);
 router.post('/reset/:id_register', resetPassHandler);
+
+router.put('/admin/:id_register', auth, adminAccHandler);
 
 router.put('/logout', logoutHandler);
 

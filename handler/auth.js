@@ -25,8 +25,9 @@ const verifyToken = async (req, res, next) => {
             else if(user.token == 0) {
                 return res.status(404).send({ status: 'failed', message: 'Please Login' });
             }
-            console.log('ID_register : ' + user.id_register);
-            console.log(token);
+            else if(user.token != token) {
+                return res.status(404).send({ status: 'failed', message: 'Invalid token' });
+            }
         }
     }
     catch (err) {

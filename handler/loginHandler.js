@@ -1,6 +1,5 @@
 const userModel = require('../model/userModel');
 const bcrypt = require('bcrypt');
-const moment = require('moment');
 const jwt = require('jsonwebtoken');
 
 process.env.TOKEN_KEY = "glints";
@@ -19,9 +18,11 @@ const loginHandler = async (req, res) => {
                 }
             });
 
+            const id_level = user.id_level;
+
             if (user && (await bcrypt.compare(password, user.password))) {
                 const token = jwt.sign(
-                    { id_register: user.id_register, email },
+                    { id_register: user.id_register, id_level, email },
                     process.env.TOKEN_KEY,
                     {
                         expiresIn: "1h",

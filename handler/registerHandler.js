@@ -36,8 +36,16 @@ const registerHandler = async (req, res) => {
                 createdAt: today,
             });
 
+            const level = await userModel.findOne({
+                where: {
+                    email: email
+                }
+            });
+
+            const id_level = level.id_level;
+
             const token = jwt.sign(
-                { id_register: user.id_register, email },
+                { id_register: user.id_register, id_level, email },
                 process.env.TOKEN_KEY,
                 {
                     expiresIn: "1h",
