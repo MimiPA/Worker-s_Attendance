@@ -21,12 +21,14 @@ router.get('/', (req, res) => {
     res.status(200).send("Glints Worker's Attendance");
 });
 
-router.get('/login', cors(corsOptions), (req, res) => {
+router.get('/login', (req, res) => {
     res.status(200).send({
         status: 'success',
         token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF9yZWdpc3RlciI6MiwiZW1haWwiOiJwYXJhbWl0YWFkaXR1bmdAZ21haWwuY29tIiwiaWF0IjoxNjMyNDAxOTkzLCJleHAiOjE2MzI0MDU1OTN9.0CSMu2GElkyIILuuThRNQGFgGsL4vLL10OJFiBpmcaY',
         message: 'Login Success'
     });
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 });
 
 router.get('/register', (req, res) => {
