@@ -88,7 +88,7 @@ CREATE TABLE attendances (
     id_attendance SERIAL NOT NULL PRIMARY KEY,
     id_register INT NOT NULL,
     entryAt TIMESTAMP NOT NULL,
-    exitAt TIMESTAMP NOT NULL,
+    exitAt TIMESTAMP NOT NULL DEFAULT '0000-00-00 00:00:00,
     checkIn VARCHAR(10) NOT NULL DEFAULT 'No',
     latitude VARCHAR(50) NOT NULL,
     longitude VARCHAR(50) NOT NULL,

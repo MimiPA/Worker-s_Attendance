@@ -18,7 +18,8 @@ module.exports = db.sequelize.define(
             defaultValue: Sequelize.NOW
         },
         exitat: {
-            type: Sequelize.DATE
+            type: Sequelize.DATE,
+            defaultValue: '0'
         },
         checkin: {
             type: Sequelize.STRING,

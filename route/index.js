@@ -4,6 +4,7 @@ const { logoutHandler } = require('../handler/logoutHandler');
 const { forgotHandler } = require('../handler/forgotHandler');
 const { resetPassHandler } = require('../handler/resetHandler');
 const { adminAccHandler } = require('../handler/adminAccHandler');
+const { checkinHandler } = require('../handler/checkinHandler');
 
 const auth = require('../handler/auth');
 
@@ -26,9 +27,7 @@ router.get('/login', (req, res) => {
         status: 'success',
         token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF9yZWdpc3RlciI6MiwiZW1haWwiOiJwYXJhbWl0YWFkaXR1bmdAZ21haWwuY29tIiwiaWF0IjoxNjMyNDAxOTkzLCJleHAiOjE2MzI0MDU1OTN9.0CSMu2GElkyIILuuThRNQGFgGsL4vLL10OJFiBpmcaY',
         message: 'Login Success'
-    });
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    }).header("Access-Control-Allow-Origin", "*");
 });
 
 router.get('/register', (req, res) => {
@@ -51,6 +50,8 @@ router.post('/login', loginHandler);
 router.post('/home', auth, (req, res) => {
     res.status(200).send("Welcome to Home Page");
 });
+
+router.post('/checkin', auth, checkinHandler);
 
 router.post('/forgot', forgotHandler);
 router.get('/reset/:id_register', resetPassHandler);

@@ -1,16 +1,8 @@
 const Sequelize = require('sequelize');
 const db = {};
-const sequelize = new Sequelize('denndsuq8po91s', 'uemfoqlmslqxla', 'feaa718624322e4d96fbf7f2b4575e814ead63f7a8860c58385a2dd278536f03', {
-    host: 'ec2-52-206-193-199.compute-1.amazonaws.com',
-    port: 5432,
+const sequelize = new Sequelize('glints_worker', 'postgres', 'mimi', {
+    host: 'localhost',
     dialect: 'postgres',
-    ssl: true,
-    dialectOptions: {
-        ssl: {
-            require: true,
-            rejectUnauthorized: false
-        }
-    },
     operatorsAliases: false,
 
     pool: {
