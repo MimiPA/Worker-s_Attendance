@@ -16,7 +16,7 @@ const corsOptions = {
     origin: ['*']
 };
 
-router.use(cors());
+router.use(cors(corsOptions));
 
 router.get('/', (req, res) => {
     res.status(200).send("Glints Worker's Attendance");
