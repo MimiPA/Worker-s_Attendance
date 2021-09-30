@@ -16,7 +16,8 @@ const corsOptions = {
     origin: ['*']
 };
 
-router.use(cors(corsOptions));
+router.use(cors());
+router.options('*', cors());
 
 router.get('/', (req, res) => {
     res.status(200).send("Glints Worker's Attendance");
@@ -27,7 +28,7 @@ router.get('/login', (req, res) => {
         status: 'success',
         token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF9yZWdpc3RlciI6MiwiZW1haWwiOiJwYXJhbWl0YWFkaXR1bmdAZ21haWwuY29tIiwiaWF0IjoxNjMyNDAxOTkzLCJleHAiOjE2MzI0MDU1OTN9.0CSMu2GElkyIILuuThRNQGFgGsL4vLL10OJFiBpmcaY',
         message: 'Login Success'
-    }).header("Access-Control-Allow-Origin", "*");
+    });
 });
 
 router.get('/register', (req, res) => {
@@ -44,21 +45,21 @@ router.get('/register', (req, res) => {
     });
 });
 
-router.post('/register', cors(corsOptions), registerHandler);
-router.post('/login', cors(corsOptions), loginHandler);
+router.post('/register', registerHandler);
+router.post('/login', loginHandler);
 
-router.post('/home', cors(corsOptions), auth, (req, res) => {
+router.post('/home', auth, (req, res) => {
     res.status(200).send("Welcome to Home Page");
 });
 
-router.post('/checkin', cors(corsOptions), auth, checkinHandler);
+router.post('/checkin', auth, checkinHandler);
 
-router.post('/forgot', cors(corsOptions), forgotHandler);
+router.post('/forgot', forgotHandler);
 router.get('/reset/:id_register', resetPassHandler);
-router.post('/reset/:id_register', cors(corsOptions), resetPassHandler);
+router.post('/reset/:id_register', resetPassHandler);
 
-router.put('/admin/:id_register', cors(corsOptions), auth, adminAccHandler);
+router.put('/admin/:id_register', auth, adminAccHandler);
 
-router.put('/logout', cors(corsOptions), logoutHandler);
+router.put('/logout', logoutHandler);
 
 module.exports = router;
