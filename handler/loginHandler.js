@@ -18,9 +18,9 @@ const loginHandler = async (req, res) => {
                 }
             });
 
-            const id_level = user.id_level;
-
             if (user && (await bcrypt.compare(password, user.password))) {
+                const id_level = user.id_level;
+
                 const token = jwt.sign(
                     { id_register: user.id_register, id_level, email },
                     process.env.TOKEN_KEY,
