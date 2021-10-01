@@ -6,7 +6,7 @@ const corsOptions = {
     origin: ['*']
 };
 
-app.use(cors(corsOptions));
+app.use(cors());
 app.options('*', cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
