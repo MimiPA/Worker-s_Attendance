@@ -43,29 +43,34 @@ const checkinHandler = async (req, res) => {
                 console.log("Distance meters : " + jarak);
                 console.log("Distance km : " + distance_km);
 
-                if (jarak <= 100) {
-                    const user = await attendanceModel.create({
-                        id_register: dataUser.id_register,
-                        entryat: today,
-                        checkin: 'Yes',
-                        latitude: latitude,
-                        longitude: longitude,
-                        distance: jarak
-                    });
+                if (dataUser.account == 'Active') {
+                    if (jarak <= 100) {
+                        const user = await attendanceModel.create({
+                            id_register: dataUser.id_register,
+                            entryat: today,
+                            checkin: 'Yes',
+                            latitude: latitude,
+                            longitude: longitude,
+                            distance: jarak
+                        });
 
-                    return res.status(201).send({ status: "success", message: "Checkin success 'Yes'. Distance : " + user.distance });
+                        return res.status(201).send({ status: "success", message: "Checkin success 'Yes'. Distance : " + user.distance });
+                    }
+                    else {
+                        const user = await attendanceModel.create({
+                            id_register: dataUser.id_register,
+                            entryat: today,
+                            checkin: 'No',
+                            latitude: latitude,
+                            longitude: longitude,
+                            distance: jarak
+                        });
+
+                        return res.status(201).send({ status: "success", message: "Checkin success 'No'. Distance : " + user.distance });
+                    }
                 }
-                else {
-                    const user = await attendanceModel.create({
-                        id_register: dataUser.id_register,
-                        entryat: today,
-                        checkin: 'No',
-                        latitude: latitude,
-                        longitude: longitude,
-                        distance: jarak
-                    });
-
-                    return res.status(201).send({ status: "success", message: "Checkin success 'No'. Distance : " + user.distance });
+                else{
+                    return res.status(400).send({ status: 'failed', message: 'User account Deactive. Please contact admin!' });
                 }
             }
         }
