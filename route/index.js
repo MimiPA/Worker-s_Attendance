@@ -16,7 +16,7 @@ const corsOptions = {
     origin: ['*']
 };
 
-router.use(cors());
+router.use(cors(corsOptions));
 router.options('*', cors());
 
 router.get('/', (req, res) => {
