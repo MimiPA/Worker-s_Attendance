@@ -7,11 +7,20 @@ process.env.TOKEN_KEY = "glints";
 
 const registerHandler = async (req, res) => {
     try {
-        const { full_name, email, password, repassword } = req.body;
+        const { email, full_name, password, repassword } = req.body;
         const today = moment().format('YYYY-MM-DD HH:mm:ss');
 
-        if (!(full_name && email && password && repassword)) {
-            res.status(400).send({ status: "failed", message: "All input is required" });
+        if (!email) {
+            res.status(400).send({ status: "failed", message: "Email is required" });
+        }
+        else if (!full_name) {
+            res.status(400).send({ status: "failed", message: "Full Name is required" });
+        }
+        else if (!password) {
+            res.status(400).send({ status: "failed", message: "Password is required" });
+        }
+        else if (!repassword) {
+            res.status(400).send({ status: "failed", message: "Repassword is required" });
         }
         else if (password != repassword) {
             res.status(400).send({ status: "failed", message: "Please match both password" });
