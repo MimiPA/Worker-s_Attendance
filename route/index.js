@@ -5,6 +5,8 @@ const { forgotHandler } = require('../handler/forgotHandler');
 const { resetPassHandler } = require('../handler/resetHandler');
 const { adminAccHandler } = require('../handler/adminAccHandler');
 const { checkinHandler } = require('../handler/checkinHandler');
+const { checkoutHandler } = require('../handler/checkoutHandler');
+const { usersHandler } = require('../handler/usersHandler');
 
 const auth = require('../handler/auth');
 
@@ -52,13 +54,20 @@ router.post('/home', auth, (req, res) => {
     res.status(200).send("Welcome to Home Page");
 });
 
+router.get('/home', auth, (req, res) => {
+    res.status(200).send("Welcome to Home Page");
+});
+
 router.post('/checkin', auth, checkinHandler);
+router.post('/checkout', auth, checkoutHandler);
 
 router.post('/forgot', forgotHandler);
 router.get('/reset/:id_register', resetPassHandler);
 router.post('/reset/:id_register', resetPassHandler);
 
 router.put('/admin/:id_register', auth, adminAccHandler);
+
+router.get('/users', auth, usersHandler);
 
 router.put('/logout', logoutHandler);
 

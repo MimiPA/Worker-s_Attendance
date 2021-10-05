@@ -106,6 +106,17 @@ feaa718624322e4d96fbf7f2b4575e814ead63f7a8860c58385a2dd278536f03
 
 
 
+
+TRUNCATE TABLE attendances RESTART IDENTITY;
+ALTER TABLE attendances ALTER COLUMN entryat TYPE TIMESTAMPTZ;
+ALTER TABLE attendances ALTER COLUMN exitat SET DEFAULT '2000-01-01 00:00:00+07';
+ALTER TABLE attendances ADD COLUMN duration VARCHAR(50);
+
+
+
+
+
+
 const Sequelize = require('sequelize');
 const db = {};
 const sequelize = new Sequelize('glints_worker', 'postgres', 'mimi', {

@@ -19,7 +19,7 @@ module.exports = db.sequelize.define(
         },
         exitat: {
             type: Sequelize.DATE,
-            defaultValue: '0'
+            defaultValue: '2000-01-01 00:00:00'
         },
         checkin: {
             type: Sequelize.STRING,
@@ -33,6 +33,10 @@ module.exports = db.sequelize.define(
         },
         distance: {
             type: Sequelize.STRING
+        },
+        duration: {
+            type: Sequelize.STRING,
+            defaultValue: '0'
         }
     },
     {

@@ -2,6 +2,7 @@ const attendanceModel = require('../model/attendanceModel');
 const userModel = require('../model/userModel');
 const bcrypt = require('bcrypt');
 const moment = require('moment');
+const momentTZ = require('moment-timezone');
 const jwt = require('jsonwebtoken');
 const haversine = require('haversine-distance');
 
@@ -11,7 +12,7 @@ const checkinHandler = async (req, res) => {
     try {
         const token = req.body.token || req.query.token || req.headers["x-access-token"];
         const { latitude, longitude } = req.body;
-        const today = moment().format('YYYY-MM-DD HH:mm:ss');
+        const today = momentTZ().tz('Asia/Jakarta').format('YYYY-MM-DD HH:mm:ss');
 
         if (!token) {
             return res.status(403).send("A token is required for authentication");
@@ -54,7 +55,7 @@ const checkinHandler = async (req, res) => {
                             distance: jarak
                         });
 
-                        return res.status(201).send({ status: "success", message: "Checkin success 'Yes'. Distance : " + user.distance });
+                        return res.status(201).send({ status: "success", message: "Checkin success 'Yes'. Distance : " + user.distance, entryat: today });
                     }
                     else {
                         const user = await attendanceModel.create({
@@ -66,10 +67,10 @@ const checkinHandler = async (req, res) => {
                             distance: jarak
                         });
 
-                        return res.status(201).send({ status: "success", message: "Checkin success 'No'. Distance : " + user.distance });
+                        return res.status(201).send({ status: "success", message: "Checkin success 'No'. Distance : " + user.distance, entryat: today });
                     }
                 }
-                else{
+                else {
                     return res.status(400).send({ status: 'failed', message: 'User account Deactive. Please contact admin!' });
                 }
             }
