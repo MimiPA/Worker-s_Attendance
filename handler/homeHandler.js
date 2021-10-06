@@ -24,7 +24,8 @@ const homeHandler = async (req, res) => {
                 return res.status(400).send({ status: 'failed', message: 'User account doesn\'t exist' });
             }
             else {
-                return res.status(200).send({ status: 'success', message: 'Welcome to home page', email: user.email, full_name: user.full_name });
+                return res.status(200).send(user.email);
+                //return res.status(200).send({ status: 'success', message: 'Welcome to home page', email: user.email, full_name: user.full_name });
             }
         }
     }
