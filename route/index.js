@@ -67,7 +67,8 @@ router.post('/reset/:id_register', resetPassHandler);
 
 router.put('/admin/:id_register', auth, adminAccHandler);
 
-router.get('/users', auth, usersHandler);
+//router.get('/users', auth, usersHandler);
+router.get('/users', usersHandler);
 
 router.put('/logout', logoutHandler);
 
