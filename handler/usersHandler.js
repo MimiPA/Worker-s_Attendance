@@ -39,10 +39,10 @@ const usersHandler = async (req, res) => {
         //     }
         // }
 
-        if (decoded.id_level == 1) {
+        if (id_level == 1) {
             return res.status(400).send({ status: 'failed', message: 'This is not admin' });
         }
-        else if (decoded.id_level == 2) {
+        else if (id_level == 2) {
             const user = await userModel.findAll({
                 attributes: { exclude: ['password', 'token'] },
                 order: [['id_register', 'DESC']]
