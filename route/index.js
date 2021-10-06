@@ -7,6 +7,8 @@ const { adminAccHandler } = require('../handler/adminAccHandler');
 const { checkinHandler } = require('../handler/checkinHandler');
 const { checkoutHandler } = require('../handler/checkoutHandler');
 const { usersHandler } = require('../handler/usersHandler');
+const { absenceHandler } = require('../handler/absenceHandler');
+const { homeHandler } = require('../handler/homeHandler');
 
 const auth = require('../handler/auth');
 
@@ -50,13 +52,7 @@ router.get('/register', (req, res) => {
 router.post('/register', registerHandler);
 router.post('/login', loginHandler);
 
-router.post('/home', auth, (req, res) => {
-    res.status(200).send("Welcome to Home Page");
-});
-
-router.get('/home', auth, (req, res) => {
-    res.status(200).send("Welcome to Home Page");
-});
+router.get('/home', auth, homeHandler);
 
 router.post('/checkin', auth, checkinHandler);
 router.post('/checkout', auth, checkoutHandler);
@@ -69,6 +65,7 @@ router.put('/admin/:id_register', auth, adminAccHandler);
 
 //router.get('/users', auth, usersHandler);
 router.get('/users', usersHandler);
+router.get('/absen', auth, absenceHandler);
 
 router.put('/logout', logoutHandler);
 

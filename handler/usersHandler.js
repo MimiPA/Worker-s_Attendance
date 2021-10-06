@@ -2,7 +2,7 @@ const userModel = require('../model/userModel');
 const attendanceModel = require('../model/attendanceModel');
 const jwt = require('jsonwebtoken');
 
-//userModel.hasMany(attendanceModel, {foreignKey: 'id_register'});
+userModel.hasMany(attendanceModel, {foreignKey: 'id_register'});
 
 const usersHandler = async (req, res) => {
     try {
@@ -40,7 +40,7 @@ const usersHandler = async (req, res) => {
         // }
 
 
-        
+
         const user = await userModel.findAll({
             attributes: { exclude: ['password', 'token'] },
             order: [['id_register', 'DESC']]

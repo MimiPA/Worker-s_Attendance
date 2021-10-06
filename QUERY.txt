@@ -111,6 +111,8 @@ TRUNCATE TABLE attendances RESTART IDENTITY;
 ALTER TABLE attendances ALTER COLUMN entryat TYPE TIMESTAMPTZ;
 ALTER TABLE attendances ALTER COLUMN exitat SET DEFAULT '2000-01-01 00:00:00+07';
 ALTER TABLE attendances ADD COLUMN duration VARCHAR(50);
+SELECT id_register, COUNT(checkin) FROM attendances WHERE checkin ='No' AND entryat > '2021-10-06 20:00:00' AND entryat < '2021-10-10 10:10:10' GROUP BY id_register;
+SELECT id_register, COUNT(checkin) FROM attendances WHERE checkin ='No' GROUP BY id_register;
 
 
 

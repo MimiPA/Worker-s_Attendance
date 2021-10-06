@@ -9,8 +9,10 @@ const sequelize = new Sequelize('denndsuq8po91s', 'uemfoqlmslqxla', 'feaa7186243
         ssl: {
             require: true,
             rejectUnauthorized: false
-        }
+        },
+        useUTC: false,
     },
+    timezone: '+08:00',
     operatorsAliases: false,
 
     pool: {
