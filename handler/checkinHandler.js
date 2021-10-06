@@ -45,29 +45,41 @@ const checkinHandler = async (req, res) => {
                 console.log("Distance km : " + distance_km);
 
                 if (dataUser.account == 'Active') {
-                    if (jarak <= 100) {
-                        const user = await attendanceModel.create({
-                            id_register: dataUser.id_register,
-                            entryat: today,
-                            checkin: 'Yes',
-                            latitude: latitude,
-                            longitude: longitude,
-                            distance: jarak
-                        });
+                    const dataAttendance = await attendanceModel.findOne({
+                        where: {
+                            id_register: decoded.id_register,
+                            duration: '0'
+                        }
+                    });
 
-                        return res.status(201).send({ status: "success", message: "Checkin success 'Yes'. Distance : " + user.distance, entryat: today });
+                    if (dataAttendance) {
+                        return res.status(404).send({ status: 'failed', message: 'User attendance doesn\'t exist. Please checkOut' });
                     }
                     else {
-                        const user = await attendanceModel.create({
-                            id_register: dataUser.id_register,
-                            entryat: today,
-                            checkin: 'No',
-                            latitude: latitude,
-                            longitude: longitude,
-                            distance: jarak
-                        });
+                        if (jarak <= 100) {
+                            const user = await attendanceModel.create({
+                                id_register: dataUser.id_register,
+                                entryat: today,
+                                checkin: 'Yes',
+                                latitude: latitude,
+                                longitude: longitude,
+                                distance: jarak
+                            });
 
-                        return res.status(201).send({ status: "success", message: "Checkin success 'No'. Distance : " + user.distance, entryat: today });
+                            return res.status(201).send({ status: "success", message: "Checkin success 'Yes'. Distance : " + user.distance, entryat: today });
+                        }
+                        else {
+                            const user = await attendanceModel.create({
+                                id_register: dataUser.id_register,
+                                entryat: today,
+                                checkin: 'No',
+                                latitude: latitude,
+                                longitude: longitude,
+                                distance: jarak
+                            });
+
+                            return res.status(201).send({ status: "success", message: "Checkin success 'No'. Distance : " + user.distance, entryat: today });
+                        }
                     }
                 }
                 else {
@@ -78,7 +90,7 @@ const checkinHandler = async (req, res) => {
     }
     catch (err) {
         console.log(err);
-        res.json({ message: err });
+        return res.json({ message: err });
     }
 };
 

@@ -11,19 +11,19 @@ const registerHandler = async (req, res) => {
         const today = moment().format('YYYY-MM-DD HH:mm:ss');
 
         if (!email) {
-            res.status(400).send({ status: "failed", message: "Email is required" });
+            return res.status(400).send({ status: "failed", message: "Email is required" });
         }
         else if (!full_name) {
-            res.status(400).send({ status: "failed", message: "Full Name is required" });
+            return res.status(400).send({ status: "failed", message: "Full Name is required" });
         }
         else if (!password) {
-            res.status(400).send({ status: "failed", message: "Password is required" });
+            return res.status(400).send({ status: "failed", message: "Password is required" });
         }
         else if (!repassword) {
-            res.status(400).send({ status: "failed", message: "Repassword is required" });
+            return res.status(400).send({ status: "failed", message: "Repassword is required" });
         }
         else if (password != repassword) {
-            res.status(400).send({ status: "failed", message: "Please match both password" });
+            return res.status(400).send({ status: "failed", message: "Please match both password" });
         }
         else {
             const oldUser = await userModel.findOne({
@@ -66,7 +66,7 @@ const registerHandler = async (req, res) => {
                 { where: { email: user.email } }
             );
 
-            res.status(201).send({
+            return res.status(201).send({
                 status: 'success',
                 token: token,
                 message: 'Register Account Successful'
@@ -75,7 +75,7 @@ const registerHandler = async (req, res) => {
     }
     catch (err) {
         console.log(err);
-        res.json({ message: err });
+        return res.json({ message: err });
     }
 };
 

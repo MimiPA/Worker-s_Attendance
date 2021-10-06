@@ -56,7 +56,7 @@ const checkoutHandler = async (req, res) => {
     }
     catch (err) {
         console.log(err);
-        res.json({ message: err });
+        return res.json({ message: err });
     }
 };
 

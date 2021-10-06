@@ -30,7 +30,7 @@ const usersHandler = async (req, res) => {
         //         //     }]
         //         // });
 
-        //         res.status(200).send({
+        //         return res.status(200).send({
         //             status: 'success',
         //             data: {
         //                 user
@@ -46,7 +46,7 @@ const usersHandler = async (req, res) => {
             order: [['id_register', 'DESC']]
         });
 
-        res.status(200).send({
+        return res.status(200).send({
             status: 'success',
             data: {
                 user

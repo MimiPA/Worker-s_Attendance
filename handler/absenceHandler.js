@@ -71,7 +71,7 @@ const absenceHandler = async (req, res) => {
                 //     }]
                 // });
 
-                res.status(200).send({
+                return res.status(200).send({
                     status: 'success',
                     start: startDate,
                     end: endDate,

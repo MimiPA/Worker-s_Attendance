@@ -9,7 +9,7 @@ const loginHandler = async (req, res) => {
         const { email, password } = req.body;
 
         if (!(email && password)) {
-            res.status(400).send({ status: "failed", message: "All input is required" });
+            return res.status(400).send({ status: "failed", message: "All input is required" });
         }
         else {
             const user = await userModel.findOne({
@@ -34,20 +34,20 @@ const loginHandler = async (req, res) => {
                     { where: { email: user.email } }
                 );
 
-                res.status(201).send({
+                return res.status(201).send({
                     status: 'success',
                     token: token,
                     message: 'Login Success'
                 });
             }
             else {
-                res.status(400).send({status: 'failed', message: 'Invalid Credentials'});
+                return res.status(400).send({status: 'failed', message: 'Invalid Credentials'});
             }
         }
     }
     catch (err) {
         console.log(err);
-        res.json({ message: err });
+        return res.json({ message: err });
     }
 };
 

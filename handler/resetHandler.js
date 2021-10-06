@@ -12,13 +12,13 @@ const resetPassHandler = async (req, res) => {
         const { password, repassword } = req.body;
 
         if (!id_register) {
-            res.status(400).send({ status: 'failed', message: 'ID Register is missing' });
+            return res.status(400).send({ status: 'failed', message: 'ID Register is missing' });
         }
         else if(!(password && repassword)){
-            res.status(400).send({ status: 'failed', message: 'All input required' });
+            return res.status(400).send({ status: 'failed', message: 'All input required' });
         }
         else if(password != repassword){
-            res.status(400).send({ status: 'failed', message: "Please match both password" });
+            return res.status(400).send({ status: 'failed', message: "Please match both password" });
         }
         else {
             const pengguna = userModel.findOne({
@@ -36,12 +36,12 @@ const resetPassHandler = async (req, res) => {
                 { where: { id_register: id_register } }
             );
 
-            res.status(201).send({ status: 'success', message: "Reset Password Successfully" });
+            return res.status(201).send({ status: 'success', message: "Reset Password Successfully" });
         }
     }
     catch (err) {
         console.log(err);
-        res.json({ message: err });
+        return res.json({ message: err });
     }
 };
 

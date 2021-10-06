@@ -9,14 +9,14 @@ const logoutHandler = async (req, res) => {
     const token = req.body.token || req.query.token || req.headers["x-access-token"];
     try {
         if (!token) {
-            res.status(401).send({ status: 'failed', message: 'No Token Logout' });
+            return res.status(401).send({ status: 'failed', message: 'No Token Logout' });
         }
         else {
             const upUser = userModel.update(
                 { token: 0 },
                 { where: { token: token } }
             );
-            res.send({ status: 'success', message: 'You have been Logged Out'});
+            return res.send({ status: 'success', message: 'You have been Logged Out'});
         }
     }
     catch (err) {

@@ -20,7 +20,7 @@ const adminAccHandler = async (req, res) => {
                 const { id_register } = req.params;
 
                 if (!(id_register)) {
-                    res.status(400).send({ status: "failed", message: "ID_Register is required" });
+                    return res.status(400).send({ status: "failed", message: "ID_Register is required" });
                 }
                 else {
                     const user = await userModel.findOne({
@@ -34,7 +34,7 @@ const adminAccHandler = async (req, res) => {
                         { where: { email: user.email } }
                     );
 
-                    res.status(200).send({
+                    return res.status(200).send({
                         status: 'success',
                         email: user.email,
                         message: 'Active account success'
@@ -45,7 +45,7 @@ const adminAccHandler = async (req, res) => {
     }
     catch (err) {
         console.log(err);
-        res.json({ message: err });
+        return res.json({ message: err });
     }
 };
 
