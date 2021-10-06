@@ -22,7 +22,7 @@ const usersHandler = async (req, res) => {
         //             attributes: { exclude: ['password', 'token'] },
         //             order: [['id_register', 'DESC']]
         //         });
-                
+
         //         // const check = await userModel.findAll({
         //         //     include: [{
         //         //         model: attendanceModel,
@@ -39,29 +39,20 @@ const usersHandler = async (req, res) => {
         //     }
         // }
 
-        if (id_level == 1) {
-            return res.status(400).send({ status: 'failed', message: 'This is not admin' });
-        }
-        else if (id_level == 2) {
-            const user = await userModel.findAll({
-                attributes: { exclude: ['password', 'token'] },
-                order: [['id_register', 'DESC']]
-            });
-            
-            // const check = await userModel.findAll({
-            //     include: [{
-            //         model: attendanceModel,
-            //         required: true
-            //     }]
-            // });
 
-            res.status(200).send({
-                status: 'success',
-                data: {
-                    user
-                }
-            });
-        }
+        
+        const user = await userModel.findAll({
+            attributes: { exclude: ['password', 'token'] },
+            order: [['id_register', 'DESC']]
+        });
+
+        res.status(200).send({
+            status: 'success',
+            data: {
+                user
+            }
+        });
+
     }
     catch (err) {
         console.log(err);
