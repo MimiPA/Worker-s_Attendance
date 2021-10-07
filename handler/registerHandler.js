@@ -33,7 +33,7 @@ const registerHandler = async (req, res) => {
             });
 
             if (oldUser) {
-                return res.status(409).send({ status: 'failed', message: 'User Already Exist. Please Login' });
+                return res.status(400).send({ status: 'failed', message: 'User Already Exist. Please Login' });
             }
 
             encryptedPassword = await bcrypt.hash(password, 10);
