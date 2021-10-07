@@ -106,6 +106,13 @@ feaa718624322e4d96fbf7f2b4575e814ead63f7a8860c58385a2dd278536f03
 
 
 
+Your Client ID
+593027374094-d9sd3sht7nsfadgvlaoda4s2nljur06q.apps.googleusercontent.com
+
+Your Client Secret
+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
+
+
 
 TRUNCATE TABLE attendances RESTART IDENTITY;
 ALTER TABLE attendances ALTER COLUMN entryat TYPE TIMESTAMPTZ;

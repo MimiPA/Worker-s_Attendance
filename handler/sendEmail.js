@@ -5,8 +5,9 @@ const sendEmail = async (email, subject, text) => {
         const transporter = nodemailer.createTransport({
             host: 'smtp.gmail.com',
             port: 465,
-            service: process.env.SERVICE,
+            service: 'gmail',
             secure: true,
+            secureConnection: false,
             auth: {
                 user: 'ctf18email@gmail.com',
                 pass: 'testing18'
