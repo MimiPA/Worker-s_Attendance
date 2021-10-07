@@ -66,7 +66,7 @@ const checkinHandler = async (req, res) => {
                                 distance: jarak
                             });
 
-                            return res.status(201).send({ status: "success", message: "Checkin success 'Yes'. Distance : " + user.distance, entryat: today });
+                            return res.status(201).send({ status: "success", message: `Checkin success and distance is ${jarak} meters`, entryat: today });
                         }
                         else {
                             const user = await attendanceModel.create({
@@ -78,7 +78,7 @@ const checkinHandler = async (req, res) => {
                                 distance: jarak
                             });
 
-                            return res.status(201).send({ status: "success", message: "Checkin success 'No'. Distance : " + user.distance, entryat: today });
+                            return res.status(201).send({ status: "success", message: `Checkin success but too far away and distance is ${jarak} meters`, entryat: today });
                         }
                     }
                 }

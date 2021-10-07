@@ -10,6 +10,7 @@ const { usersHandler } = require('../handler/usersHandler');
 const { absenceHandler } = require('../handler/absenceHandler');
 const { homeHandler } = require('../handler/homeHandler');
 const { adminRejHandler } = require('../handler/adminRejHandler');
+const { passHandler } = require('../handler/passHandler');
 
 const auth = require('../handler/auth');
 
@@ -59,7 +60,7 @@ router.post('/checkin', auth, checkinHandler);
 router.post('/checkout', auth, checkoutHandler);
 
 router.post('/forgot', forgotHandler);
-router.get('/reset/:id_register', resetPassHandler);
+router.get('/reset/:id_register', passHandler);
 router.post('/reset/:id_register', resetPassHandler);
 
 router.put('/adminAcc/:id_register', auth, adminAccHandler);
