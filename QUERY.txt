@@ -110,7 +110,15 @@ Your Client ID
 593027374094-d9sd3sht7nsfadgvlaoda4s2nljur06q.apps.googleusercontent.com
 
 Your Client Secret
-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
+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
+
+Authorization Code
+4/0AX4XfWjQB56lzjeEAbfvhzDYFVOwByO6E3qZwOIASypiU8bP6sQ65V2RUtDRGLur8Uli2Q
+
+Refresh Token
+1//04LRwQfJVksgZCgYIARAAGAQSNwF-L9IrgAMgbjKxILzhN7NnCCM39wRTNrw8dplC0x7dTGoG8SZ6bP2KDepLEEsanTzKI4qTHiU
+
+Access Token ya29.a0ARrdaM88VY37QohBhLby7aVUKvz8_ckeD11BZXkgW95DDkg5haOBRphBybvu82No7UTEb0O6Oqosaa6ElVb5g7PXCBLP5iyBajnpj7drBrf8_-BKVfIflEyE_PjuKsijP_3P-HBdtc5-fKdurUf9h0IQRJsr
 
 
 
