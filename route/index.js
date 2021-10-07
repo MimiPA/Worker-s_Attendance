@@ -53,7 +53,7 @@ router.get('/register', (req, res) => {
 router.post('/register', registerHandler);
 router.post('/login', loginHandler);
 
-router.get('/home', auth, homeHandler);
+router.post('/home', auth, homeHandler);
 
 router.post('/checkin', auth, checkinHandler);
 router.post('/checkout', auth, checkoutHandler);
@@ -66,8 +66,8 @@ router.put('/adminAcc/:id_register', auth, adminAccHandler);
 router.put('/adminRej/:id_register', auth, adminRejHandler);
 
 //router.get('/users', auth, usersHandler);
-router.get('/users', usersHandler);
-router.get('/absen', auth, absenceHandler);
+router.post('/users', usersHandler);
+router.post('/absen', auth, absenceHandler);
 
 router.put('/logout', logoutHandler);
 
