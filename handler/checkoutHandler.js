@@ -30,7 +30,7 @@ const checkoutHandler = async (req, res) => {
             else {
                 let ms = moment(dataAttendance.entryat, "YYYY-MM-DD HH:mm:ss").diff(moment(exitat, "YYYY-MM-DD HH:mm:ss"));
                 let d = moment.duration(ms);
-                let s = Math.floor(d.asHours()) + moment.utc(ms).format(":mm:ss");
+                let s = Math.floor(d.asHours() + 2) + moment.utc(ms).format(":mm:ss");
 
                 const upData = await attendanceModel.update(
                     {
