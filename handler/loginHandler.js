@@ -18,7 +18,10 @@ const loginHandler = async (req, res) => {
                 }
             });
 
-            if (user && (await bcrypt.compare(password, user.password))) {
+            if (user.account == 'Block') {
+                return res.status(400).send({ status: 'failed', message: 'Your Account is Blocked. Please contact admin' });
+            }
+            else if (user && (await bcrypt.compare(password, user.password))) {
                 const id_level = user.id_level;
 
                 const token = jwt.sign(
@@ -41,7 +44,7 @@ const loginHandler = async (req, res) => {
                 });
             }
             else {
-                return res.status(400).send({status: 'failed', message: 'Invalid Credentials'});
+                return res.status(400).send({ status: 'failed', message: 'Invalid Credentials' });
             }
         }
     }
