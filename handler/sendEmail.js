@@ -24,8 +24,9 @@ const sendEmail = async (email, subject, text) => {
             //secureConnection: false,
             auth: {
                 type: "OAuth2",
-                user: 'ipebe1309@gmail.com',
+                user: 'ctf18email@gmail.com',
                 clientId: "593027374094-d9sd3sht7nsfadgvlaoda4s2nljur06q.apps.googleusercontent.com",
+                clientSecret: "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",
                 refreshToken: "1//04LRwQfJVksgZCgYIARAAGAQSNwF-L9IrgAMgbjKxILzhN7NnCCM39wRTNrw8dplC0x7dTGoG8SZ6bP2KDepLEEsanTzKI4qTHiU",
                 accessToken: accessToken,
                 //pass: 'IpeBe1309'
