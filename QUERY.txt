@@ -80,9 +80,7 @@ CREATE TABLE registers (
     REFERENCES register_levels(id_level)
 );
 
-INSERT INTO public.registers(
-	full_name, email, password, createdat, token, account, id_level)
-	VALUES ('Admin', 'ctf18email@gmail.com', '$2b$10$5jwA5bPSYBaYrcKoTwJoaeRQlFBm5kGFWOBvfpkRaRaMqjx6PAW6K', '2021-09-19 13:16:40', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF9yZWdpc3RlciI6NCwiZW1haWwiOiJjdGYxOGVtYWlsQGdtYWlsLmNvbSIsImlhdCI6MTYzMjY1ODAwMSwiZXhwIjoxNjMyNjYxNjAxfQ.uzxJxKzAiNTlwmSG1sTH-WQVp9iABuy9gz3Dd6ld4wE', 'Active', 2);
+INSERT INTO public.registers(full_name, email, password, createdat, token, account, id_level) VALUES ('Admin', 'ctf18email@gmail.com', '$2b$10$5jwA5bPSYBaYrcKoTwJoaeRQlFBm5kGFWOBvfpkRaRaMqjx6PAW6K', '2021-09-19 13:16:40', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF9yZWdpc3RlciI6NCwiZW1haWwiOiJjdGYxOGVtYWlsQGdtYWlsLmNvbSIsImlhdCI6MTYzMjY1ODAwMSwiZXhwIjoxNjMyNjYxNjAxfQ.uzxJxKzAiNTlwmSG1sTH-WQVp9iABuy9gz3Dd6ld4wE', 'Active', 2);
 
 CREATE TABLE attendances (
     id_attendance SERIAL NOT NULL PRIMARY KEY,

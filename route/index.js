@@ -63,12 +63,12 @@ router.post('/forgot', forgotHandler);
 router.get('/reset/:id_register', passHandler);
 router.post('/reset/:id_register', resetPassHandler);
 
-router.put('/adminAcc/:id_register', auth, adminAccHandler);
-router.put('/adminRej/:id_register', auth, adminRejHandler);
+router.put('/adminAcc/:id_register', adminAccHandler);
+router.put('/adminRej/:id_register', adminRejHandler);
 
 //router.get('/users', auth, usersHandler);
 router.post('/users', usersHandler);
-router.post('/absen', auth, absenceHandler);
+router.post('/absen', absenceHandler);
 
 router.put('/logout', logoutHandler);
 
